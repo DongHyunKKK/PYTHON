@@ -13,4 +13,18 @@ for data in datas:
 
 # 리스트 안에 요소/원소 (인덱스, 데이터) 추출
 for data in enumerate(datas):
-    
+    print(data)
+
+x = ['std01', 'std02', 'std03']
+y = [100, 200, 300]
+
+myDict = {}
+for data in enumerate(x):
+    myDict[data[1]] = y[data[0]]
+print(f'myDict => {myDict}')
+
+
+myDict2 = {}
+for idx, key in enumerate(x):
+    myDict2[key] = y[idx]
+print(f'myDict2 => {myDict2}')

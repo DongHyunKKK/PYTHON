@@ -21,9 +21,9 @@ for num in range(1, 12):
 
 print()
 
+# 별표로 구성된 마름모
 for num in range(1, 12):
     if num <= 6:
         print(' ' * (6 - num) + '*' * (2 * num - 1) + ' ' * (6 - num))
     else:
         print(' ' * (num - 6) + '*' * ((-2) * (num - 6) + 11) + ' ' * (num - 6))
-

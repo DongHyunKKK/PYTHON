@@ -29,3 +29,15 @@ for num in range(1, height+1):
         print(' ' * (half_height - num) + '*' * (2 * num - 1) + ' ' * (half_height - num))
     else:
         print(' ' * (num - half_height) + '*' * ((-2) * (num - half_height) + height) + ' ' * (num - half_height))
+
+
+# 다른 풀이
+col = int(input('가로 길이 : '))
+row = int(input('세로 길이 : '))
+
+for i in range(col):
+    if i <= int((row-1)/2):
+        print(f'{"*"*(int((col-1)/((row-1)/2))*(i+1) + 1 - int((col-1)/((row-1)/2))):^{col}}')
+    else:
+        print(f'{"*"*(int(-(col-1)/((row-1)/2))*(i-int((row-1)/2)) + col):^{col}}')
+

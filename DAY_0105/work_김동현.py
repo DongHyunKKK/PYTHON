@@ -17,22 +17,20 @@ num_list = list(map(int, num_list))
 print(f'합계 : {sum(num_list)}, 최댓값 : {max(num_list)}, 최솟값 : {min(num_list)}')
 
 # 3
-
 while True:
     str_num = input('알파벳 혹은 숫자를 입력하세요 : ')
     if str_num != 'q' and str_num.isalpha():
-        print(chr(2664))
+        print('♤')
         if str_num == 'Q':
             break
     elif str_num != 'Q' and str_num.isalpha():
-        print(chr(2660))
+        print('♠')
         if str_num == 'q':
             break
     elif str_num.isnumeric():
-        print(chr(25CE)*len(int(str_num)))
+        print('◎'*int(str_num))
 
 # 4
-
 multiples_3 = [num for num in range(3, 101, 3)]
 multiples_7 = [num for num in range(7, 101 ,7)]
 multiples_8 = [num for num in range(8, 101, 8)]
@@ -40,7 +38,6 @@ multiples_8 = [num for num in range(8, 101, 8)]
 print(set(multiples_3 + multiples_7 + multiples_8))
 
 # 5
-
 def bin_word(string):
     string = string.replace(' ', '')
     letter_list = list(string)
@@ -49,10 +46,10 @@ def bin_word(string):
     for letter in letter_list:
         hex_incoding += hex(ord(letter))
         binary_incoding += bin(ord(letter))
-    print(f'{string}의 인코딩 : {hex_incoding}\n{string}의 인코딩 : {binary_incoding}')
+    print(f'"{string}"의 인코딩 : {hex_incoding}\n"{string}"의 인코딩 : {binary_incoding}')
 
 string = '가나다'
-print(bin_word(string))
+bin_word(string)
 
 # print(hex(ord('가'))+hex(ord('나')))
 # print(hex(ord('나')))
@@ -64,18 +61,36 @@ print(bin_word(string))
 # print(s)
 
 # 6
+def sort_list(datas, n):
+    n_letters = []
+    for data in datas:
+        if len(data) <= n:
+            print('데이터를 다시 입력하세요.')
+        else:
+            n_letters.append(data[n])
+    print(n_letters)
+    sort_letters = sorted(n_letters)
+    print(sort_letters)
+    sort_datas = []
+    ind = 0
+    for letter in sort_letters:
+        if datas[n_letters.index(letter)] in sort_datas:
+            sort_datas.append(datas[n_letters.index(letter, ind, len(n_letters) + 1)])
+            ind += 1
+        else:
+            sort_datas.append(datas[n_letters.index(letter)])
 
-def sort_some(words_list, number):
-    sort_list = sorted(word_list)
+    for i in range(len(sort_datas)):
+        for j in range(i + 1, len(sort_datas)):
+            if sort_datas[i][n] == sort_datas[j][n]:
+                if sort_datas[i] > sort_datas[j]:
+                    sort_datas[i], sort_datas[j] = sort_datas[j], sort_datas[i]
+
+    print(sort_datas)
 
 
+sort_list(['askde', 'beach', 'surf'], 2)
 
-
-
-
-data = ['askde', 'beach', 'surf']
-print(sorted(data))
-n = 2
 
 # 7
 def my_list(int_list):
@@ -100,6 +115,39 @@ my_list(nums)
 #     print(type(number))  # 튜플
 # my(num)
 
+nums = [-2, 3, 0, 2, -5]
+
+
+# nums = [-3, -2, 1, 0, 1, 2, 3]
+
+def zero_combination(nums):
+
+    posi_nums = [num for num in nums if num >= 0]
+    nega_nums = [num for num in nums if num < 0]
+    # print(posi_nums)
+    # print(nega_nums)
+
+    posi_twoadd = [posi_nums[i] + posi_nums[j] for i in range(len(posi_nums)) for j in range(i + 1, len(posi_nums))]
+    # print(posi_twoadd)
+
+    nega_twoadd = [nega_nums[i] + nega_nums[j] for i in range(len(nega_nums)) for j in range(i + 1, len(nega_nums))]
+    # print(nega_twoadd)
+
+    num_combi = 0
+    for add in posi_twoadd:
+        if -add in nega_nums:
+            num_combi += 1
+
+    for add in nega_twoadd:
+        if -add in posi_nums:
+            num_combi += 1
+
+    print(num_combi)
+
+
+zero_combination(nums)
+
+# 다른문제
 def combi(num_list):
     if len(num_list) != 3:
         print('정수 리스트의 길이는 3이어야 합니다.')
@@ -119,7 +167,7 @@ def combi(num_list):
                         combi_num += 1
                         break
 
-             if sum(num_list) == 0:
+            if sum(num_list) == 0:
                     combi_num += 1
 
     print(combi_num)
@@ -134,16 +182,16 @@ def gugudan(dan):
 
 # 10
 def sum_maxmin(string):
+    string1 = string
     string = string.replace(',','')
     num_list = list(string)
     num_list = list(map(int, num_list))
-    print(f'{string}의 합 : {sum(num_list)}, 가장 큰 수 : {max(num_list)}, 가장 작은 수 : {min(num_list)}')
+    print(f'"{string1}"의 합 : {sum(num_list)}, 가장 큰 수 : {max(num_list)}, 가장 작은 수 : {min(num_list)}')
 
 sum_maxmin('1,234')
 
 # 11
 import random
-
 def biggo_game():
     ran_num = random.randint(1, 100)
     while True:
@@ -243,12 +291,33 @@ birthday = input('생년월일 입력 : ')
 def my_age(birthday):
 
     today_date = '2024.01.07'
-    korean_age = 2024 - int(birth[:4]) + 1
 
-    foreign_age
-    print(f'당신의 한국 나이는 ')
+    if birthday[0] in ['0', '1', '2']:
+        if birthday[5:7] == '01':
+            if int(birthday[-1]) >= 7:
+                foreign_age =  2024 - int(birthday[:4])
+            else:
+                foreign_age = 2024 - int(birthday[:4]) - 1
+        else:
+            foreign_age = 2024 - int(birthday[:4])
+        korean_age = 2024 - int(birthday[:4]) + 1
+    else:
+        if birthday[5:7] == '01':
+            if int(birthday[-1]) >= 7:
+                foreign_age =  2024 - int(birthday[:4])
+            else:
+                foreign_age = 2024 - int(birthday[:4]) - 1
+        else:
+            foreign_age = 2024 - int(birthday[:4])
+        korean_age = 2024 - int(birthday[:4]) + 1
+
+
+    print(f'당신의 한국 나이는 {korean_age}세 입니다.\n당신의 만 나이는 {foreign_age}세 입니다.')
+
+my_age(birthday)
 
 # 19
+# 풀이 1
 num = int(input('팩토리얼 수 입력 : '))
 fact = 1
 i = 0
@@ -268,8 +337,27 @@ if num:
 else:
     print(f'{num}! => {num}')
 
-# 20
 
+# 풀이 2
+num = int(input('팩토리얼 수 입력 : '))
+fact = 1
+i = 0
+expre = f'{num}! = '
+if num:
+    while num > 0:
+        expre += ''
+        expre += str(num)
+        expre += ' * ' if num != 1 else ''
+        fact *= num
+        num -= 1
+
+    expre += ' = ' + str(fact)
+    print(expre)
+else:
+    print(f'{num}! => {num}')
+
+
+# 20
 end = int(input('범위 숫자 입력 : '))
 def prime_num(end):
     if end == 1:
@@ -319,8 +407,7 @@ for i in range(10):
     if i == 0:
         print()
 
-# 23
-
+# 23 --> 20번과 같은 문제
 
 # 24
 number = input('숫자 입력 (4자리 숫자) :')
@@ -335,11 +422,23 @@ def digit_func(number):
 digit_func(number)
 
 # 25
-def addData(*data):
-    data = list(data[1])
-    print(data)
+datas = input('입력 데이터')
+datas = list(map(int, datas.split()))
 
-addData('A', 'BC', 'Good')
+
+def addData(*datas):
+
+    if type(datas[0]) is str:
+        add = ''
+        for word in datas[0]:
+            add += word
+        print(add)
+    else:
+        datas = list(map(int, datas[0]))
+        print(sum(datas))
+
+
+addData(datas)
 
 
 # 26
@@ -357,13 +456,12 @@ for i in range(col):
 
 # 27
 string = 'Merry Christmas HaPPy New YEaR'
-string = list(string)
-string = [letter.lower() for letter in string if letter.isupper()]
-
-print(string)
+string1 = list(string)
+# string = [letter.lower() if letter.isupper() else letter.islower() letter.upper() for letter in string]
+string1 = [letter.lower() if letter.isupper() else letter.upper() for letter in string1]
+print(f"'{string}' => {''.join(string1)}")
 
 # 28
-
 def six_operation():
     a, b = map(int, input('숫자 2개 입력 : ').split(', '))
     print(f'덧셈 결과 : {a+b}')
@@ -380,3 +478,111 @@ def six_operation():
 
 six_operation()
 
+# 29
+def personal_data(**datas):
+    for key, value in datas.items():
+        print(f" 개인 정보 : {key} - {value}", end = ' ')
+
+personal_data(age = 12, id = 'mm1004', name = '마징가')
+
+# 30
+
+def Constellation():
+
+    con_dict = {range(120, 219) : '물병', range(219, 321) : '물고기',
+                    range(321, 420) : '양' , range(420, 521) : '황소',
+                    range(521, 622) : '쌍둥이', range(622, 723) : '게',
+                    range(723, 823) : '사자' , range(823, 924) : '처녀',
+                    range(924, 1023) : '천칭', range(1023, 1123) : '전갈',
+                    range(1123, 1225) : '궁수', range(1225, 1319) : '염소'}
+
+    citizen_num = input('주민번호 입력 (000000-0000000) : ')
+    citizen_num = citizen_num.split('-')
+    birthday = citizen_num[0]
+    if int(birthday[3]) == 1:
+        if int(birthday[4:6]) >= 20:
+            print('물병자리')
+        else:
+            print('염소자리')
+    else:
+        for key, value in con_dict.items():
+            if int(birthday[2]) == 0:
+                if int(birthday[3:6]) in key:
+                    print(f'{value}자리')
+                    break
+            else:
+                if int(birthday[2:6]) in key:
+                    print(f'{value}자리')
+                    break
+
+Constellation()
+
+# 31
+
+year = int(input('년도 입력 : '))
+
+if year % 4 == 0:
+    if year % 100 == 0 and year % 400 != 0:
+        print(f'{year}년은 평년입니다.')
+    elif year % 100 != 0:
+        print(f'{year}년은 윤년입니다.')
+    elif year % 400 == 0:
+        print(f'{year}년은 윤년입니다.')
+else:
+    print('아무 것도 아닙니다.')
+
+# 32
+
+citizen_num = input('주민번호 입력 (000000-0000000) : ')
+
+def zca(citizen_num):
+
+    con_dict = {range(120, 219) : '물병', range(219, 321) : '물고기',
+                        range(321, 420) : '양' , range(420, 521) : '황소',
+                        range(521, 622) : '쌍둥이', range(622, 723) : '게',
+                        range(723, 823) : '사자' , range(823, 924) : '처녀',
+                        range(924, 1023) : '천칭', range(1023, 1123) : '전갈',
+                        range(1123, 1225) : '궁수', range(1225, 1319) : '염소'}
+
+    zodiac_dict = {1992 : '원숭이', 1993 : '닭', 1994 : '개', 1995 : '돼지', 1996 : '쥐',
+                  1997 : '소', 1998 : '호랑이', 1999 : '토끼', 2000 : '용',
+                  2001 : '뱀', 2002 : '말', 2003 : '양'}
+
+    citizen_num = citizen_num.split('-')
+    birthday = citizen_num[0]
+    if int(birthday[3]) == 1:
+        if int(birthday[4:6]) >= 20:
+            Constellation = '물병자리'
+        else:
+            Constellation = '염소자리'
+    else:
+        for key, value in con_dict.items():
+            if int(birthday[2]) == 0:
+                if int(birthday[3:6]) in key:
+                    Constellation = value + '자리'
+                    break
+            else:
+                if int(birthday[2:6]) in key:
+                    Constellationf = value + '자리'
+                    break
+
+    if int(birthday[0]) in [3, 4, 5, 6, 7, 8, 9]:
+        age = 2024 - int('19' + birthday[0:2])
+    elif int(birthday[0]) in [0, 1, 2]:
+        age = 2024 - int('20' + birthday[0:2])
+
+
+    if int(birthday[0]) in [3, 4, 5, 6, 7, 8, 9]:
+          year = int('19' + birthday[0:2])
+          ind = (year - 1992) % 12
+          key = list(zodiac_dict.keys())[ind]
+          zodiac = zodiac_dict[key]
+    elif int(birthday[0]) in [0, 1, 2]:
+          year = int('20' + birthday[0:2])
+          ind = (year - 1992) % 12
+          key = list(zodiac_dict.keys())[ind]
+          zodiac = zodiac_dict[key]
+
+    print(f'띠 : {zodiac}띠, 별자리 : {Constellation}, 나이 : {age}')
+
+zca(citizen_num)

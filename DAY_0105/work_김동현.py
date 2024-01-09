@@ -9,12 +9,22 @@ def string_sort(word_list):
 string_sort(msg)
 
 # 2
-data_input = input('데이터 입력 : ')
-data_list = data_input.split()
-num_list = [data for data in data_list if data.isnumeric()]
+# 하늘 Apple 2021 -9 False 23 7 None 끝
+def choose_num():
+    data_input = input('데이터 입력 : ')
+    data_list = data_input.split()
+    new_list = []
+    for ind, ele in enumerate(data_list):
+        if ele.isnumeric():
+            new_list.append(float(ele))
+        elif ele[0] == '-' and ele[1:].isdigit():
+            new_list.append(float(ele))
+        elif ele[0] == '-' and ele[1:].replace('.','').isdigit():
+            new_list.append(float(ele))
 
-num_list = list(map(int, num_list))
-print(f'합계 : {sum(num_list)}, 최댓값 : {max(num_list)}, 최솟값 : {min(num_list)}')
+    print(f'합계 : {sum(new_list)}, 최댓값 : {max(new_list)}, 최솟값 : {min(new_list)}')
+
+choose_num()
 
 # 3
 while True:

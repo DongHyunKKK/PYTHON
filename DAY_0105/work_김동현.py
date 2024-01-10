@@ -432,24 +432,24 @@ def digit_func(number):
 digit_func(number)
 
 # 25
-datas = input('입력 데이터')
-datas = list(map(int, datas.split()))
-
-
 def addData(*datas):
+    if type(datas[0]) == int or type(datas[0]) == float:
+        sum = 0
+        for data in datas:
+            sum += data
+        print(sum)
+    elif type(datas[0]) == str:
+        sum = ''
+        for data in datas:
+            sum += data
+        print(sum)
+    elif type(datas[0]) == bool:
+        sum = 0
+        for data in datas:
+            sum += int(data)
+        print(sum)
 
-    if type(datas[0]) is str:
-        add = ''
-        for word in datas[0]:
-            add += word
-        print(add)
-    else:
-        datas = list(map(int, datas[0]))
-        print(sum(datas))
-
-
-addData(datas)
-
+addData(1, 2, 3, 4)
 
 # 26
 
